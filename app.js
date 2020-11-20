@@ -12,9 +12,11 @@ app.set('view engine', 'ejs')
 app.set('layout', 'layouts/app')
 app.use(expressLayout)
 
+
 app.use(express.static('public'))
+app.get('/', (req, res) => {
+    res.send("Welcome");
+})
 
 
-
-
-app.listen(port)
+app.listen(port, () => console.log(`Server is running in port ${port}`))
