@@ -1,11 +1,11 @@
-const express = require("express")
-const bodyParser = require('body-parser')
-const expressLayout = require('express-ejs-layouts')
-const app = express()
-const port = 3000
+const express = require("express"),
+        bodyParser = require('body-parser'),
+        expressLayout = require('express-ejs-layouts'),
+        app = express(),
+        port = 3000;
 
 // Static Files
-app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -16,10 +16,27 @@ app.use(expressLayout)
 
 // Routes
 app.get('', (req, res) => {
+    app.set('layout', 'layouts/app')
     res.render('index',{
         title: "Home page"
     })
 })
+
+//Showing login form 
+app.get("/login", function (req, res) { 
+    app.set('layout', false)
+    res.render('auth/login', {
+        title: "Log in"
+    });
+}); 
+
+app.get("/welcome", function (req, res) { 
+    app.set('layout', false)
+    res.render('auth/welcome', {
+        title: "Sign Up"
+    });
+}); 
+  
 
 
 
