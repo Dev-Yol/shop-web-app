@@ -1,0 +1,17 @@
+body {
+    text-align: center;
+    /* background-color: darkgray; */
+}
+
+.navbar {
+    -webkit-box-shadow: -1px 6px 11px 0px rgba(50, 50, 50, 0.53);
+    -moz-box-shadow: -1px 6px 11px 0px rgba(50, 50, 50, 0.53);
+    box-shadow: -1px 6px 11px 0px rgba(50, 50, 50, 0.53);
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background-color: whitesmoke;
+}

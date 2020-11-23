@@ -5,6 +5,7 @@ const express = require("express"),
         port = 3000,
         routes = require("./routes/routes"),
         database = require("./services/dbConnection");
+
 // Static Files
 app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.json())
@@ -14,7 +15,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.set('view engine', 'ejs')
 app.set('layout', 'layouts/app')
 app.use(expressLayout)
-
   
 
 app.use(routes);
