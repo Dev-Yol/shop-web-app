@@ -1,17 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%- title %></title>
-    <link rel="stylesheet" href="css/main.css">
+    <title>
+        <%- title %>
+    </title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/index.css">
+    <!--Bootsrap 4 CDN-->
+    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="/css/bootstrap/all.css">
+    <script src="/js/bootstrap/jquery.min.js"></script>
+    <script src="/js/bootstrap/popper.min.js"></script>
+    <script src="/js/bootstrap/bootstrap.min.js"></script>
+    <!-- <style>
+        /* Make the image fully responsive */
+        
+        body {
+            text-align: center;
+            /* background-color: darkgray; */
+        }
+        
+        .navbar {
+            -webkit-box-shadow: -1px 6px 11px 0px rgba(50, 50, 50, 0.53);
+            -moz-box-shadow: -1px 6px 11px 0px rgba(50, 50, 50, 0.53);
+            box-shadow: -1px 6px 11px 0px rgba(50, 50, 50, 0.53);
+        }
+        
+        footer {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            background-color: whitesmoke;
+        }
+    </style> -->
 </head>
+
 <body>
     <div class="wrapper">
         <%- include('./../includes/header'); %>
-        <main><%- body %></main>
-        <%- include('./../includes/footer'); %>
-        
+            <main>
+                <%- body %>
+            </main>
+            <%- include('./../includes/footer'); %>
+
     </div>
 </body>
+
 </html>
