@@ -29,29 +29,22 @@
            
 
     </div>
-    <script src="/js/bootstrap/jquery.min.js"></script>
     <script>
-        $(document).ready(()=>{
-         if (!localStorage.getItem('token')) {
-            $(".auth_btns").show()
-            $(".sideNavContentOut").show()
-            $(".logout").hide()
-            $(".sideNavContentIn").hide()
-            
-        } else{
-            $(".logout").show()
-            $(".sideNavContentIn").show()
-            $(".auth_btns").hide()
-            $(".sideNavContentOut").hide()
+        $(document).ready(() => {
+            if (localStorage.getItem("token")) {
+                $(".addToCart")
+                $(".loginToContinue")
+            } else {
 
-        }
+            }
 
-        $(".logout_btn").click(()=>{
-            localStorage.clear();
-            location.href="/login"
+            $(document).on('click', '.detailBtn', (event) => {
+                let item = JSON.parse($(event.target).attr('item'));
+                $("#itemName").text(item.name)
+                $("#itemImage").attr('src', item.image)
+                $('.modal').modal('toggle')
+            })
         })
-    })
-        
     </script>
 </body>
 
