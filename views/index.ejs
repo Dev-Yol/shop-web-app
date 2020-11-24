@@ -8,45 +8,29 @@
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img src="/image/image1.jpg" alt="Los Angeles" width="100%" height="100%">
-            <div class="carousel-caption">
-                <h3></h3>
-                <p></p>
-            </div>
         </div>
         <div class="carousel-item">
             <img src="/image/image2.jpg" alt="Chicago" width="100%" height="10%">
-            <div class="carousel-caption">
-                <h3></h3>
-                <p></p>
-            </div>
         </div>
         <div class="carousel-item">
             <img src="/image/image3.jpg" alt="New York" width="100%" height="100%">
-            <div class="carousel-caption">
-                <h3></h3>
-                <p></p>
-            </div>
         </div>
     </div>
 </div>
+<br><br><br>
+<h5 class="text-center intro">It started with a simple idea: Create quality,well- designed products that i wanted myself</h5>
+<br><br> <br>
 
-<div class="container text-center">
-    <!-- <h3>THE BAND</h3>
-    <p><em>We love music!</em></p> -->
-    <p>Highlights</p>
-    <br>
-    <div class="row">
-        <div class="col-sm-4">
-            <p class="text-center"><strong>Name</strong></p><br>
-            <a href="#demo" data-toggle="collapse">
-                <img src="/image/image1.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
-            </a>
-            <div id="demo" class="collapse">
-                <p>Guitarist and Lead Vocalist</p>
-                <p>Loves long walks on the beach</p>
-                <p>Member since 1988</p>
+<div class="container">
+    <div class="row" style="font-size: 30px;">
+        <div class="col-md-5">
+            <div class="thumbnail">
+                <img src="/image/image6.jpg" alt="Lights">
+                </a>
             </div>
+            <h5 class="text-center"><em> Women's Collection</em></h5><br>
         </div>
+<<<<<<< HEAD
         <div class="col-sm-4">
             <p class="text-center"><strong>Name</strong></p><br>
             <a href="#demo2" data-toggle="collapse">
@@ -67,7 +51,64 @@
                 <p>Bass player</p>
                 <p>Loves math</p>
                 <p>Member since 2005</p>
+=======
+        <div class="col-md-5">
+            <div class="thumbnail">
+                <img src="/image/image7.jpg">
+                </a>
+            </div>
+            <h5 class="text-center"><em> Men's Collection</em></h5><br>
+        </div>
+    </div>
+</div>
+
+
+<p class="text-center font-weight-bold" style="font-size: 30px;">H I G H L I G H T S</p>
+<div class="row px-2">
+    <% for(var i=0; i < data.length; i++) { %>
+        <div class="col-3 mt-5">
+            <div class="gallery">
+                <img src="<%= data[i].image %>" width="600" height="400">
+                <div class="desc">
+                    <%= data[i].name %>
+                </div>
+                <hr>
+                <div class="my-2 mx-2 text-center">
+                    <button class="btn btn-sm btn-primary detailBtn" item="<%= JSON.stringify(data[i]) %>">View Details</button>
+                    <% if(false){ %>
+                        <button class="btn btn-sm btn-success">Add to Cart</button>
+                        <% } else{ %>
+                            <a href="/auth/welcome" type="button" class="btn btn-sm btn-danger">Sign up to Continue</a>
+                            <% } 
+                            %>
+                </div>
+            </div>
+        </div>
+        <% } %>
+</div>
+
+<!-- modal -->
+<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Item Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body item-details">
+                <!-- container -->
+                <p id="itemName"></p>
+                <img id="itemImage" src="" width="450" height="auto" alt="photo">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+>>>>>>> master
             </div>
         </div>
     </div>
 </div>
+<!-- end modal -->
+<div class="clearfix"></div>
