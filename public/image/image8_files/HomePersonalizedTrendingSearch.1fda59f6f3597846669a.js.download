@@ -1,0 +1,2 @@
+(("undefined"!=typeof self?self:this).webpackJsonp=("undefined"!=typeof self?self:this).webpackJsonp||[]).push([[93],{3615:function(e,n,t){"use strict";t.r(n);var s=t(0),f=t(51),i=t(871),c=t(809),l=t(65),o=Object(i.a)({loader:function(){return t.e(97).then(t.bind(null,3517))}});n.default=Object(f.d)(c.b,Object(l.withI18nCollections)([119,120]))(function(){return s.createElement(o,{isLoaded:!0})})}}]);
+//# sourceMappingURL=https://shopee.sg/assets/HomePersonalizedTrendingSearch.1fda59f6f3597846669a.js.map

@@ -17,7 +17,6 @@
     <script src="/js/bootstrap/jquery.min.js"></script>
     <script src="/js/bootstrap/popper.min.js"></script>
     <script src="/js/bootstrap/bootstrap.min.js"></script>
-
 </head>
 
 <body>
@@ -29,6 +28,23 @@
             <%- include('./../includes/footer'); %>
 
     </div>
+    <script>
+        $(document).ready(() => {
+            if (localStorage.getItem("token")) {
+                $(".addToCart")
+                $(".loginToContinue")
+            } else {
+
+            }
+
+            $(document).on('click', '.detailBtn', (event) => {
+                let item = JSON.parse($(event.target).attr('item'));
+                $("#itemName").text(item.name)
+                $("#itemImage").attr('src', item.image)
+                $('.modal').modal('toggle')
+            })
+        })
+    </script>
 </body>
 
 </html>
