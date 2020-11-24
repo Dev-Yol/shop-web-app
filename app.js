@@ -1,10 +1,8 @@
 const express = require("express"),
-        bodyParser = require('body-parser'),
-        expressLayout = require('express-ejs-layouts'),
-        app = express(),
-        port = 3000,
-        routes = require("./routes/routes"),
-        database = require("./services/dbConnection");
+    bodyParser = require('body-parser'),
+    expressLayout = require('express-ejs-layouts'),
+    app = express(),
+    port = 3000;
 
 // Static Files
 app.use(express.static(__dirname + '/public'))
@@ -16,47 +14,31 @@ app.set('view engine', 'ejs')
 app.set('layout', 'layouts/app')
 app.use(expressLayout)
 
-// Routes
-app.get('/', (req, res) => {
-    res.render('index',{
-        title: "Home page"
-    })
-})
 
-//Showing login form 
-app.get("/login", function (req, res) { 
+app.get("/auth/login", function(req, res) {
     app.set('layout', false)
     res.render('auth/login', {
         title: "Log in"
-    });
-}); 
+    })
+})
 
-app.get("/welcome", function (req, res) { 
+app.get("/auth/welcome", function(req, res) {
     app.set('layout', false)
     res.render('auth/welcome', {
         title: "Sign Up"
+    })
+})
+
+app.get('/', (req, res) => {
+    res.render('index', {
+        title: "Shoe Shop"
+    })
+})
+app.get('*', (req, res) => {
+    res.render('pages/404', {
+        title: "Page not Found"
     });
-}); 
-
-app.get('/dashboard', (req,res)=>{
-    res.render('layouts/dashboard', {
-        title : "Shop Dashboard"
-    })
 })
 
-app.get('/product', (req,res)=>{
-    res.render('layouts/product', {
-        title : "Shop Product"
-    })
-})
-
-app.get('/order', (req,res)=>{
-    res.render('layouts/order', {
-        title : "Shop Order"
-    })
-})
-
-app.use(routes);
-database.connect();
 
 app.listen(port, console.log(`Listening to port ${port}!`))
