@@ -17,27 +17,6 @@
     <script src="/js/bootstrap/jquery.min.js"></script>
     <script src="/js/bootstrap/popper.min.js"></script>
     <script src="/js/bootstrap/bootstrap.min.js"></script>
-    <!-- <style>
-        /* Make the image fully responsive */
-        
-        body {
-            text-align: center;
-            /* background-color: darkgray; */
-        }
-        
-        .navbar {
-            -webkit-box-shadow: -1px 6px 11px 0px rgba(50, 50, 50, 0.53);
-            -moz-box-shadow: -1px 6px 11px 0px rgba(50, 50, 50, 0.53);
-            box-shadow: -1px 6px 11px 0px rgba(50, 50, 50, 0.53);
-        }
-        
-        footer {
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-            background-color: whitesmoke;
-        }
-    </style> -->
 </head>
 
 <body>
@@ -49,6 +28,23 @@
             <%- include('./../includes/footer'); %>
 
     </div>
+    <script>
+        $(document).ready(() => {
+            if (localStorage.getItem("token")) {
+                $(".addToCart")
+                $(".loginToContinue")
+            } else {
+
+            }
+
+            $(document).on('click', '.detailBtn', (event) => {
+                let item = JSON.parse($(event.target).attr('item'));
+                $("#itemName").text(item.name)
+                $("#itemImage").attr('src', item.image)
+                $('.modal').modal('toggle')
+            })
+        })
+    </script>
 </body>
 
 </html>
