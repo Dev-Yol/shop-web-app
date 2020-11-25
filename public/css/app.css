@@ -1,14 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
-<<<<<<< HEAD
-
-html,body{
-background-image: url('https://wallpapermemory.com/uploads/245/shoe-background-hd-1920x1200-81838.jpg');
-background-size: cover;
-background-attachment: fixed;
-background-repeat: no-repeat;
-height: 100%;
-font-family: 'Numans', sans-serif;
-=======
 html,
 body {
     background-image: url('https://1.bp.blogspot.com/-ILvxv4bz3RA/VPFenZSsMdI/AAAAAAAADws/Zx9_DdDdnMk/s1600/11787%2BColorfull%2BShoes%2BHD%2BWallpaperz%2B190902.jpg');
@@ -16,7 +6,6 @@ body {
     background-repeat: no-repeat;
     height: 100%;
     font-family: 'Numans', sans-serif;
->>>>>>> master
 }
 
 .container {

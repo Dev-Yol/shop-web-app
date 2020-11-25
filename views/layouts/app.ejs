@@ -29,31 +29,6 @@
            
 
     </div>
-<<<<<<< HEAD
-    <script src="/js/bootstrap/jquery.min.js"></script>
-    <script>
-        $(document).ready(()=>{
-         if (!localStorage.getItem('token')) {
-            $(".auth_btns").show()
-            $(".sideNavContentOut").show()
-            $(".logout").hide()
-            $(".sideNavContentIn").hide()
-            
-        } else{
-            $(".logout").show()
-            $(".sideNavContentIn").show()
-            $(".auth_btns").hide()
-            $(".sideNavContentOut").hide()
-
-        }
-
-        $(".logout_btn").click(()=>{
-            localStorage.clear();
-            location.href="/login"
-        })
-    })
-        
-=======
     <script>
         $(document).ready(() => {
             if (localStorage.getItem("token")) {
@@ -70,7 +45,6 @@
                 $('.modal').modal('toggle')
             })
         })
->>>>>>> master
     </script>
 </body>
 

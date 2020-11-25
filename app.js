@@ -15,14 +15,14 @@ app.set('layout', 'layouts/app')
 app.use(expressLayout)
 
 
-app.get("/auth/login", function(req, res) {
+app.get("/login", function(req, res) {
     app.set('layout', false)
     res.render('auth/login', {
         title: "Log in"
     })
 })
 
-app.get("/auth/welcome", function(req, res) {
+app.get("/welcome", function(req, res) {
     app.set('layout', false)
     res.render('auth/welcome', {
         title: "Sign Up"
@@ -82,11 +82,16 @@ app.get('/', (req, res) => {
         ]
     })
 })
+
+app.get('/admin/index', (req, res)=>{
+    res.render('admin/index', {
+        title: "Admin Homepage"
+    });
+});
 app.get('*', (req, res) => {
     res.render('pages/404', {
         title: "Page not Found"
     });
-})
-
+});
 
 app.listen(port, console.log(`Listening to port ${port}!`))
