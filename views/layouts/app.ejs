@@ -22,20 +22,21 @@
 <body>
     <div class="wrapper">
         <%- include('./../includes/header'); %>
-            <main class="main">
-                <%- body %>
-                <%- include('./../includes/footer'); %>
-            </main>
-           
-
+        <main class="main">
+            <%- body %>
+        </main>
+        <%- include('./../includes/footer'); %>
     </div>
     <script>
         $(document).ready(() => {
             if (localStorage.getItem("token")) {
-                $(".addToCart")
-                $(".loginToContinue")
+                // $(".addToCart")
+                // $(".loginToContinue")
+                $(".logout").show()
+                $(".auth_btns").hide()
             } else {
-
+                $(".logout").hide()
+                $(".auth_btns").show()
             }
 
             $(document).on('click', '.detailBtn', (event) => {
