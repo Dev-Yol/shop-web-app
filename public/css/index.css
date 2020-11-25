@@ -1,11 +1,6 @@
 body {
     text-align: center;
-<<<<<<< HEAD
-    font-family: "Lato", sans-serif;
-=======
     font-weight: bolder;
->>>>>>> 007b44996a738a603d3bd1521053f4887ac1de3b
-    /* background-color: darkgray; */
 }
 
 .navbar {
@@ -14,52 +9,6 @@ body {
     box-shadow: -1px 6px 11px 0px rgba(50, 50, 50, 0.53);
 }
 
-<<<<<<< HEAD
-footer {
-    margin-top: 1%;
-    width: 100%;
-    background-color: whitesmoke;
-}
-.sideNavContentOut, .sideNavContentIn {
-    margin-top: 30%;
-}
-.sidenav {
-    height: 100%;
-    width: 15%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    padding-top: 20px;
-  }
-  
-  .sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    margin-top: 0 ;
-  }
-  
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
-  
-  .main {
-    margin-top: 4%;
-    margin-left: 15%; /* Same as the width of the sidenav */
-    font-size: 28px; /* Increased text to enable scrolling */
-    
-  }
-  
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
-=======
 div.gallery {
     border: 1px solid #ccc;
 }
@@ -106,4 +55,3 @@ div.desc {
     display: table;
     clear: both;
 }
->>>>>>> 007b44996a738a603d3bd1521053f4887ac1de3b
