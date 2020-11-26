@@ -11,7 +11,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // Set Templating Engine
 app.set('view engine', 'ejs')
-app.set('layout', 'layouts/app')
 app.use(expressLayout)
 
 
@@ -30,6 +29,7 @@ app.get("/welcome", function(req, res) {
 })
 
 app.get('/', (req, res) => {
+    app.set('layout', 'layouts/app')
     res.render('index', {
         title: "Shoe Shop",
         data: [{
@@ -82,12 +82,36 @@ app.get('/', (req, res) => {
         ]
     })
 })
-
+// This is routes for admin
 app.get('/admin/index', (req, res)=>{
+    app.set('layout','admin/app' )
     res.render('admin/index', {
-        title: "Admin Homepage"
+        title: "Dashboard"
     });
 });
+
+app.get('/admin/product', (req, res)=>{
+    app.set('layout','admin/app' )
+    res.render('admin/product', {
+        title: "Product"
+    });
+});
+
+app.get('/admin/order', (req, res)=>{
+    app.set('layout','admin/app' )
+    res.render('admin/order', {
+        title: "Order"
+    });
+});
+
+app.get('/admin/customer', (req, res)=>{
+    app.set('layout','admin/app' )
+    res.render('admin/customer', {
+        title: "Customer"
+    });
+});
+
+// this is for generic routes error
 app.get('*', (req, res) => {
     res.render('pages/404', {
         title: "Page not Found"
