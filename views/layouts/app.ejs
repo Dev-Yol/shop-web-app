@@ -24,18 +24,21 @@
         <%- include('./../includes/header'); %>
             <main class="main">
                 <%- body %>
-                    <%- include('./../includes/footer'); %>
             </main>
-
-
+            <%- include('./../includes/footer'); %>
     </div>
     <script>
         $(document).ready(() => {
             if (localStorage.getItem("token")) {
-                $(".addToCart")
-                $(".loginToContinue")
+                $(".addToCardBtn").show()
+                $(".registerBtn").hide()
+                $(".logout").show()
+                $(".auth_btns").hide()
             } else {
-
+                $(".addToCardBtn").hide()
+                $(".registerBtn").show()
+                $(".logout").hide()
+                $(".auth_btns").show()
             }
 
             $(document).on('click', '.detailBtn', (event) => {

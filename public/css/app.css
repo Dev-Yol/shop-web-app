@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 html,
 body {
-    background-image: url('https://1.bp.blogspot.com/-ILvxv4bz3RA/VPFenZSsMdI/AAAAAAAADws/Zx9_DdDdnMk/s1600/11787%2BColorfull%2BShoes%2BHD%2BWallpaperz%2B190902.jpg');
+    background-image: url('../image/image4.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
@@ -77,10 +77,10 @@ input:focus {
 }
 
 .links {
-    color: black;
+    color: yellow;
 }
 
 .links a {
     margin-left: 4px;
-    color: darkblue
+    color: white
 }

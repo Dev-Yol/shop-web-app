@@ -1,7 +1,6 @@
 body {
     text-align: center;
     font-weight: bolder;
-    /* background-color: darkgray; */
 }
 
 .navbar {
@@ -55,4 +54,22 @@ div.desc {
     content: "";
     display: table;
     clear: both;
+}
+
+
+/* homepage user */
+
+
+/* carousel */
+
+.carous {
+    background-color: red;
+    margin-top: 5%;
+    margin-left: 4%;
+    width: 60%;
+}
+
+.carousel-item>img {
+    width: 100%;
+    float: left;
 }
