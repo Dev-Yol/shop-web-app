@@ -5,6 +5,7 @@ const express = require("express"),
     app = express(),
     port = 3000,
     db = require("./services/dbConnection")
+const { Product } = require("./models")
 
 
 // Static Files
@@ -17,9 +18,15 @@ app.set('view engine', 'ejs')
 app.use(expressLayout)
 
 
-function isLoggedIn(req, res, next) {
-    res.redirect("/login");
-}
+// function isLoggedIn(req, res, next) {
+//     res.redirect("/login");
+// }
+app.get("/auth/login", function(req, res) {
+    app.set('layout', false)
+    res.render('auth/login', {
+        title: "Sign In"
+    })
+})
 
 app.get("/auth/registration", function(req, res) {
     app.set('layout', false)
@@ -28,11 +35,12 @@ app.get("/auth/registration", function(req, res) {
     })
 })
 
-app.get("/user/cart", function(req, res) {
-    res.render('user/cart', {
+app.get("/user/order/:id", function(req, res) {
+    res.render('user/order', {
         title: "Add to Cart"
     })
 })
+
 
 // app.get("/user/cart", isLoggedIn, function(req, res, next) {
 //     Order.find({ user: req.user }, function(err, orders) {
@@ -101,58 +109,18 @@ app.get("/user/homepageUser", function(req, res) {
     })
 })
 
-app.get('/', (req, res) => {
+app.get('/', async(req, res) => {
         app.set('layout', 'layouts/app')
+        let data = [];
+        try {
+            data = await Product.find({}).limit(8)
+        } catch (error) {
+            data = []
+        }
+        console.log(data)
         return res.render('index', {
             title: "Shoe Shop",
-            data: [{
-                    id: 1,
-                    name: "Waterproof walking shoes for men",
-                    image: "/image/image8.jpg",
-                    description: ""
-                },
-                {
-                    id: 2,
-                    name: "Everlane's First Sneaker",
-                    image: "/image/image9.png",
-                    description: ""
-                },
-                {
-                    id: 3,
-                    name: "Medical Work Shoe for Men",
-                    image: "/image/image10.jpg",
-                    description: ""
-                },
-                {
-                    id: 4,
-                    name: "Adidas Yung-1",
-                    image: "/image/image11.jpg",
-                    description: ""
-                },
-                {
-                    id: 5,
-                    name: "White Sneaker",
-                    image: "/image/image14.jpg"
-                },
-                {
-                    id: 6,
-                    name: "Adidas Running Shoes",
-                    image: "/image/image13.jpg",
-                    description: ""
-                },
-                {
-                    id: 7,
-                    name: "Swedish Men's Shoes",
-                    image: "/image/image15.jpg",
-                    description: ""
-                },
-                {
-                    id: 8,
-                    name: "Elten Smart Shoes",
-                    image: "/image/image16.jpg",
-                    description: ""
-                },
-            ],
+            data: JSON.stringify(data),
             layout: 'layouts/app'
         })
     })
@@ -199,6 +167,12 @@ app.get('/admin/product/updating-product-details', (req, res) => {
     });
 });
 
+app.get("/seed", (req, res) => {
+    Product.find({}, (err, data) => {
+        res.send({ err, data })
+    })
+})
+
 // this is for generic routes error
 app.get('*', (req, res) => {
     app.set('layout', false)
@@ -206,6 +180,8 @@ app.get('*', (req, res) => {
         title: "Page not Found"
     });
 })
+
+
 
 app.use("/api/products", require("./router/product"))
 app.use("/api/auth", require("./router/auth"))

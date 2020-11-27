@@ -48,6 +48,26 @@
                 $('.modal').modal('toggle')
             })
 
+            window.cart = [];
+            $(document).on('click', '.addToCardBtn', (event) => {
+                let item = JSON.parse($(event.target).attr('item'));
+                let order = {
+                    item,
+                    quantity: 0
+                }
+                let exist = false;
+                window.cart.forEach(_item => {
+                    if (_item._id === item.id) {
+                        order.quantity = 1;
+                        exist = true
+                    }
+                });
+                if (!exist) {
+                    window.cart.push(order)
+                }
+            })
+
+
             $(document).on('click', '.logout_btn', () => {
                 localStorage.clear();
                 location.href = "/auth/login"

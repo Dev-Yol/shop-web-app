@@ -54,7 +54,7 @@
 
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links">
-                        Don't have an account?<a href="/auth/welcome">Sign Up</a>
+                        Don't have an account?<a href="/auth/registration">Sign Up</a>
                     </div>
                     <div class="d-flex justify-content-center links">
                         <a href="#">Forgot your password?</a>
@@ -66,13 +66,23 @@
     </div>
     <script src="/js/bootstrap/jquery.min.js"></script>
     <script>
+        const toggleLoading = (show) => {
+            if (show) {
+                $(".spanner").addClass("show");
+                $(".overlay").addClass("show");
+            } else {
+
+                $(".spanner").removeClass("show");
+                $(".overlay").removeClass("show");
+            }
+        }
         const login = (payload) => {
             $.ajax({
                 method: 'POST',
                 url: '/api/auth/login',
                 data: payload
             }).then(res => {
-                toggleLoading(false)
+                // toggleLoading(false)
                 let access_token = res.access_token;
                 localStorage.setItem("token", access_token)
                 location.href = "/"
@@ -86,16 +96,7 @@
         }
 
         $(document).ready(() => {
-            const toggleLoading = (show) => {
-                if (show) {
-                    $(".spanner").addClass("show");
-                    $(".overlay").addClass("show");
-                } else {
 
-                    $(".spanner").removeClass("show");
-                    $(".overlay").removeClass("show");
-                }
-            }
             if (localStorage.getItem('token')) {
                 location.href = "/"
             }
