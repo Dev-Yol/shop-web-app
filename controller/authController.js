@@ -2,6 +2,11 @@ const { Account, Person } = require("../models");
 const upload = require("../services/ImageUpload");
 
 const login = (req, res) => {
+    try{
+
+    }catch(error){
+        
+    }
 
 }
 
@@ -35,7 +40,7 @@ const register = (req, res) => {
                 imageName = req.file.filename
             }
             if (err) return res.status(500).send(err)
-            // after saving the Person , it will call the create user funtion 
+            // after saving the Person , it will call the create user function 
             createUserAccount({
                 profile: person._id,
                 email: info.email,

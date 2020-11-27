@@ -30,36 +30,29 @@
                     </div>
                 </div>
                 <div class="card-body">
-            
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-at"></i></span>
                             </div>
-<<<<<<< HEAD
                             <input type="text" id="email" class="form-control" placeholder="email">
-                            
-=======
-                            <input type="text" class="form-control" placeholder="email">
-
->>>>>>> 007b44996a738a603d3bd1521053f4887ac1de3b
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-<<<<<<< HEAD
                             <input type="password" id="password" class="form-control" placeholder="password">
-=======
-                            <input type="password" class="form-control" placeholder="password">
->>>>>>> 007b44996a738a603d3bd1521053f4887ac1de3b
                         </div>
+                        
+                        <label class="radio-inline">Login as : <input type="radio" name="optradio" checked><strong>User</strong></label>
+                        <label class="radio-inline mx-3"><input type="radio" name="optradio"><strong>Admin</strong></label>
                         <div class="form-group">
                             <input type="button" value="Login" class="btn float-right login_btn">
                         </div>
+                        
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links">
-                        Don't have an account?<a href="/welcome">Sign Up</a>
+                        Don't have an account?<a href="/auth/welcome">Sign Up</a>
                     </div>
                     <div class="d-flex justify-content-center">
                         <a href="#">Forgot your password?</a>
@@ -73,9 +66,9 @@
         const login = (email , password) =>{
             $.ajax({
                 method:'POST',
-                url:'/login',
+                url:'/api/auth/login',
                 data:{
-                    email , 
+                    email, 
                     password
                 }
             }).then(res=>{
