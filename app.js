@@ -148,7 +148,7 @@ app.get('/admin/product/updating-product-details', (req, res)=>{
 // this is for generic routes error
 app.get('*', (req, res) => {
     app.set('layout', false)
-    res.render('pages/404', {
+    return res.render('pages/404', {
         title: "Page not Found"
     });
 })
