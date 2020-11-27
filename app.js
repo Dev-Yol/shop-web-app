@@ -87,7 +87,7 @@ app.get('/', (req, res) => {
 })
 app.get('*', (req, res) => {
     app.set('layout', false)
-    res.render('pages/404', {
+    return res.render('pages/404', {
         title: "Page not Found"
     });
 })
