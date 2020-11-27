@@ -1,4 +1,4 @@
-// const shoeshop = require("../models/shoeshopModel")
+const shoeshop = require("../models/shoeshopModel")
 
 
 
@@ -6,6 +6,6 @@
 
 
 
-// module.exports = {
+module.exports = {
 
-// }
+}

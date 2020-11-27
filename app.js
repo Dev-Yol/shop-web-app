@@ -1,10 +1,11 @@
 const express = require("express"),
     bodyParser = require('body-parser'),
+    path = require('path'),
     expressLayout = require('express-ejs-layouts'),
     app = express(),
-    database = require("./services/dbConnection")
-const {} = require("./controller/shoeshopController")
-port = 3000;
+    port = 3001,
+    db = require("./services/dbConnection")
+
 
 // Static Files
 app.use(express.static(__dirname + '/public'))
@@ -30,6 +31,24 @@ app.get("/auth/registration", function(req, res) {
         title: "Sign Up"
     })
 })
+
+app.get("/user/cart", function(req, res) {
+    res.render('user/cart', {
+        title: "Add to Cart"
+    })
+})
+
+// app.get("/user/cart", isLoggedIn, function(req, res, next) {
+//     Order.find({ user: req.user }, function(err, orders) {
+//         if (err) return err;
+//         var cart;
+//         orders.forEach(function(order) {
+//             cart = new Cart(order.cart);
+//             order.items = cart.generateArray();
+//         });
+//         res.render('user/cart', { orders: orders });
+//     });
+// });
 
 app.get("/user/homepageUser", function(req, res) {
     res.render('user/homepageUser', {
@@ -81,12 +100,13 @@ app.get("/user/homepageUser", function(req, res) {
                 image: "/image/image16.jpg",
                 description: ""
             },
-        ]
+        ],
+        layout: 'layouts/app'
     })
 })
 
 app.get('/', (req, res) => {
-    res.render('index', {
+    return res.render('index', {
         title: "Shoe Shop",
         data: [{
                 id: 1,
@@ -135,15 +155,21 @@ app.get('/', (req, res) => {
                 image: "/image/image16.jpg",
                 description: ""
             },
-        ]
+        ],
+        layout: 'layouts/app'
     })
 })
 
 app.get('*', (req, res) => {
+    app.set('layout', false)
     res.render('pages/404', {
         title: "Page not Found"
     });
 })
 
-database.connect()
+app.use("/api/product", require("./router/product"))
+app.use("/api/auth", require("./router/auth"))
+app.use('/images', express.static(path.join(__dirname, 'public/uploads')))
+
+db.connect();
 app.listen(port, console.log(`Listening to port ${port}!`))
