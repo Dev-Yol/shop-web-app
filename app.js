@@ -3,7 +3,7 @@ const express = require("express"),
     path = require('path'),
     expressLayout = require('express-ejs-layouts'),
     app = express(),
-    port = 3001,
+    port = 3000,
     db = require("./services/dbConnection")
 
 
@@ -14,16 +14,32 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // Set Templating Engine
 app.set('view engine', 'ejs')
-app.set('layout', 'layouts/app')
 app.use(expressLayout)
 
-
+//Display Log in form
 app.get("/auth/login", function (req, res) {
     app.set('layout', false)
     res.render('auth/login', {
         title: "Log in"
     })
 })
+// //Handling user login 
+// app.post("/login", passport.authenticate("local", { 
+//     successRedirect: "/secret", 
+//     failureRedirect: "/login"
+// }), function (req, res) { 
+// }); 
+  
+// //Handling user logout  
+// app.get("/logout", function (req, res) { 
+//     req.logout(); 
+//     res.redirect("/"); 
+// }); 
+  
+function isLoggedIn(req, res, next) { 
+    if (req.isAuthenticated()) return next(); 
+    res.redirect("/login"); 
+} 
 
 app.get("/auth/welcome", function (req, res) {
     app.set('layout', false)
@@ -33,6 +49,7 @@ app.get("/auth/welcome", function (req, res) {
 })
 
 app.get('/', (req, res) => {
+    app.set('layout', 'layouts/app')
     return res.render('index', {
         title: "Shoe Shop",
         data: [{
@@ -85,6 +102,50 @@ app.get('/', (req, res) => {
         ]
     })
 })
+// This is routes for admin
+app.get('/admin/index', (req, res)=>{
+    app.set('layout','admin/adminLayout/app' )
+    res.render('admin/adminPages/index', {
+        title: "Dashboard"
+    });
+});
+
+app.get('/admin/product', (req, res)=>{
+    app.set('layout','admin/adminLayout/app' )
+    res.render('admin/adminPages/product', {
+        title: "Product"
+    });
+});
+
+app.get('/admin/order', (req, res)=>{
+    app.set('layout','admin/adminLayout/app' )
+    res.render('admin/adminPages/order', {
+        title: "Order"
+    });
+});
+
+app.get('/admin/customer', (req, res)=>{
+    app.set('layout','admin/adminLayout/app' )
+    res.render('admin/adminPages/customer', {
+        title: "Customer"
+    });
+});
+
+app.get('/admin/product/adding-new-product', (req, res)=>{
+    app.set('layout','admin/adminLayout/app' )
+    res.render('admin/adminPages/addProduct', {
+        title: "Adding Product"
+    });
+});
+
+app.get('/admin/product/updating-product-details', (req, res)=>{
+    app.set('layout','admin/adminLayout/app' )
+    res.render('admin/adminPages/updateProduct', {
+        title: "Updating Product"
+    });
+});
+
+// this is for generic routes error
 app.get('*', (req, res) => {
     app.set('layout', false)
     return res.render('pages/404', {
@@ -92,7 +153,7 @@ app.get('*', (req, res) => {
     });
 })
 
-app.use("/api/product", require("./router/product"))
+app.use("/api/products", require("./router/product"))
 app.use("/api/auth", require("./router/auth"))
 app.use('/images', express.static(path.join(__dirname, 'public/uploads')))
 

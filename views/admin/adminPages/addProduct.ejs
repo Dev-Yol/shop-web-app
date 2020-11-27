@@ -1,0 +1,81 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">Adding Product</h1>
+  </div>
+  <div class="container">
+    <div class="center_div">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-image"></i></span>
+            </div>
+            <div class="custom-file form-group col-md-7">
+                <input type="file" accept="image/*" class="custom-file-input" id="file">
+                <label class="custom-file-label" for="file">Sample photos</label>
+            </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="price">Price</label>
+            <input type="number" class="form-control" id="price">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="brand">Brand</label>
+            <input type="text" class="form-control" id="brand">
+          </div>
+          <div class="form-group  col-md-2">
+            <label for="stock">Total Stock</label>
+            <input type="number" class="form-control" id="stock">
+          </div>
+        </div>
+        
+        <div class="form-row">
+            <!-- <div class="form-group col-md-2">
+                <label for="available-color">Available Colors</label>
+                <input type="text" class="form-control" id="colors">
+              </div> -->
+              <div class="form-group col-md-4">
+                <label for="colors">Available Colors</label>
+                <select multiple class="form-control" id="colors">
+                  <option>Red</option>
+                  <option>Blue</option>
+                  <option>Green</option>
+                  <option>Yellow</option>
+                  <option>Orange</option>
+                  <option>Purple</option>
+                  <option>Brown</option>
+                  <option>Black</option>
+                </select>
+              </div>
+              <!-- <div class="form-group col-md-2">
+                <label for="available-size">Available Sizes</label>
+                <input type="text" class="form-control" id="sizes">
+              </div> -->
+              <div class="form-group col-md-4">
+                <label for="sizes">Available Sizes</label>
+                <select multiple class="form-control" id="sizes">
+                  <option>36</option>
+                  <option>38</option>
+                  <option>40</option>
+                  <option>41</option>
+                  <option>42</option>
+                  <option>43</option>
+                  <option>44</option>
+                  <option>45</option>
+                </select>
+              </div>
+        </div>
+        <div class="form-row">
+        <div class="form-group  col-md-8">
+            <label for="other-description">Other Description</label>
+            <textarea type="text" class="form-control" id="description">
+                </textarea>
+          </div>
+        </div>
+          <button href="" id="addProductBtn" class="btn btn-success" role="button" style="margin-left: 50%;">Add Product</button>
+    </div>
+  </div>
+
+
