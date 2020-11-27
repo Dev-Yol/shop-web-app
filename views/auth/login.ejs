@@ -19,6 +19,7 @@
 
 <body>
     <div class="container">
+
         <div class="d-flex justify-content-center h-100">
             <div class="card">
                 <div class="card-header text-center">
@@ -29,23 +30,31 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-at"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="email">
+                        <input type="text" id="email" class="form-control" placeholder="email">
 
                     </div>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control" placeholder="password">
+                        <input type="password" id="password" class="form-control" placeholder="password">
                     </div>
                     <div class="form-group">
-                        <input type="button" value="Login" class="btn float-right login_btn">
+                        <button class="btn float-right login_btn">
+                            Login
+                        </button>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" value="0" type="checkbox" id="isAdmin">
+                        <label class="form-check-label text-white" for="defaultCheck1">
+                            Login as Admin
+                        </label>
                     </div>
                 </div>
 
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links">
-                        Don't have an account?<a href="../auth/registration">Sign Up</a>
+                        Don't have an account?<a href="/auth/welcome">Sign Up</a>
                     </div>
                     <div class="d-flex justify-content-center links">
                         <a href="#">Forgot your password?</a>
@@ -53,66 +62,55 @@
                 </div>
             </div>
         </div>
+        <%- include('./../includes/loading'); %>
     </div>
-    <!-- <script src="/js/bootstrap/jquery.min.js"></script>
+    <script src="/js/bootstrap/jquery.min.js"></script>
     <script>
-        const login = (email, password) => {
-                $.ajax({
-                    method: 'POST',
-                    url: '/login',
-                    data: {
-                        email,
-                        password
-                    }
-                }).then(res => {
-                    let access_token = res.data.token;
-                    localStorage.setItem("token", access_token)
-                    window.user = "Lay";
-                    window.authed = true;
-                    location.href = "/"
-                }).catch(err => {
-                    let {
-                        responseJSON
-                    } = err;
-                    const login = (email, password) => {
-                        $.ajax({
-                            method: 'POST',
-                            url: '/login',
-                            data: {
-                                email,
-                                password
-                            }
-                        }).then(res => {
-                            let access_token = res.data.token;
-                            localStorage.setItem("token", access_token)
-                            window.user = "Lay";
-                            window.authed = true;
-                            location.href = "/"
-                        }).catch(err => {
-                            let {
-                                responseJSON
-                            } = err;
-                            master
-                            alert(responseJSON.message)
-                        })
-                    }
+        const login = (payload) => {
+            $.ajax({
+                method: 'POST',
+                url: '/api/auth/login',
+                data: payload
+            }).then(res => {
+                toggleLoading(false)
+                let access_token = res.access_token;
+                localStorage.setItem("token", access_token)
+                location.href = "/"
+            }).catch(err => {
+                toggleLoading(false)
+                let {
+                    responseJSON
+                } = err;
+                alert(responseJSON.message)
+            })
+        }
 
+        $(document).ready(() => {
+            const toggleLoading = (show) => {
+                if (show) {
+                    $(".spanner").addClass("show");
+                    $(".overlay").addClass("show");
+                } else {
 
-                    $(document).ready(() => {
-                        if (localStorage.getItem('token')) {
-                            location.href = "/"
-                        }
-                        $(".login_btn").click(() => {
-                            let email = $("#email").val()
-                            let password = $("#password").val()
-                            login(email, password)
-                        })
-                    })
+                    $(".spanner").removeClass("show");
+                    $(".overlay").removeClass("show");
+                }
+            }
+            if (localStorage.getItem('token')) {
+                location.href = "/"
+            }
+            $(".login_btn").click(() => {
+                toggleLoading(true)
+                let email = $("#email").val()
+                let password = $("#password").val()
+                let isAdmin = $("#isAdmin").is(":checked")
+                login({
+                    email,
+                    password,
+                    role: isAdmin ? 'admin' : 'user'
                 })
-                 $(document).ready(()=>{ if (localStorage.getItem('token')) { location.href = "/" } $(".login_btn").click(()=>{ let email = $("#email").val() let password = $("#password").val() login(email ,password) }) }) //
-            } -->
-
-    $(document).ready(()=>{ if (localStorage.getItem('token')) { location.href = "/" } $(".login_btn").click(()=>{ let email = $("#email").val() let password = $("#password").val() login(email ,password) }) })
+            })
+        })
     </script>
 
 

@@ -1,8 +1,36 @@
 const { Account, Person } = require("../models");
-const upload = require("../services/ImageUpload");
+const { generateToken } = require("../services/middleware");
 
 const login = (req, res) => {
-
+    let { email, password, role } = req.body;
+    let response = {
+        access_token: '',
+        role: '',
+        data: {}
+    }
+    try {
+        console.log("2-->" ,{ email: email, password: password, role: role })
+        Account.findOne({ email: email, password: password, role: role }).exec((err, user) => {
+            if (err) {
+                res.status(500).json(err)
+            } else {
+                if (user === null || user === undefined) {
+                    res.status(401).send({
+                        message: 'Invalid Credentials'
+                    })
+                    return
+                }
+                response.access_token = generateToken(user._id);
+                response.data = {
+                    userId: user._id,
+                    role
+                }
+                res.json(response)
+            }
+        })
+    } catch (error) {
+        res.status(500).send({ message: error })
+    }
 }
 
 const createUserAccount = (details, callback, onError = null) => {
@@ -35,7 +63,7 @@ const register = (req, res) => {
                 imageName = req.file.filename
             }
             if (err) return res.status(500).send(err)
-            // after saving the Person , it will call the create user funtion 
+            // after saving the Person , it will call the create user function 
             createUserAccount({
                 profile: person._id,
                 email: info.email,

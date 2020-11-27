@@ -47,6 +47,11 @@
                 $("#itemImage").attr('src', item.image)
                 $('.modal').modal('toggle')
             })
+
+            $(document).on('click', '.logout_btn', () => {
+                localStorage.clear();
+                location.href = "/auth/login"
+            })
         })
     </script>
 </body>
