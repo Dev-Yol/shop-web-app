@@ -1,4 +1,4 @@
-const { Account, Person } = require("../models");
+const { Account, Profile } = require("../models");
 const { generateToken } = require("../services/middleware");
 
 const login = (req, res) => {
@@ -54,18 +54,18 @@ const createUserAccount = (details, callback, onError = null) => {
 
 const register = (req, res) => {
     try {
-        // this function saves the Person Schema
+        // this function saves the Profile Schema
         let info = JSON.parse(req.body.info)
-        let person = new Person(info);
-        person.save((err, person) => {
+        let Profile = new Profile(info);
+        Profile.save((err, Profile) => {
             let imageName = '';
             if (req.file) {
                 imageName = req.file.filename
             }
             if (err) return res.status(500).send(err)
-            // after saving the Person , it will call the create user function 
+            // after saving the Profile , it will call the create user function 
             createUserAccount({
-                profile: person._id,
+                profile: Profile._id,
                 email: info.email,
                 password: info.password,
                 profilePicture: imageName,
@@ -81,7 +81,7 @@ const register = (req, res) => {
             })
         });
     } catch (error) {
-        // error in saving the person
+        // error in saving the Profile
         res.status(500).send(error)
     }
 

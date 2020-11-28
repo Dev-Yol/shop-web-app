@@ -50,7 +50,7 @@ app.get("/auth/welcome", function (req, res) {
 
 app.get('/', (req, res) => {
     app.set('layout', 'layouts/app')
-    return res.render('index', {
+    return res.render('pages/homepage', {
         title: "Shoe Shop",
         data: [{
             id: 1,

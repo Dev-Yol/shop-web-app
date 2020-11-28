@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const CartSchema = new Schema({
-    customer: { type: Schema.ObjectId, ref: 'Person' },
+    customer: { type: Schema.ObjectId, ref: 'Profile' },
     orderItems: { type: Schema.ObjectId, ref: 'OrderItem' },
     dateOrdered: { type: Date, default: new Date() },
     total: { type: Number, required: true }

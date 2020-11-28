@@ -5,7 +5,7 @@ const AccountSchema = new Schema({
     password: { type: String, required: true },
     role: { type: String, default: 'user' },
     profilePicture: { type: String },
-    profile: { type: Schema.ObjectId, ref: 'Person' }
+    profile: { type: Schema.ObjectId, ref: 'Profile' }
 })
 
 const Account = model("Account", AccountSchema);
