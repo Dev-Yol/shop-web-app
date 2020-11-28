@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="/css/index.css">
     <!--Bootsrap 4 CDN-->
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
-
     <!--Fontawesome CDN-->
+
     <link rel="stylesheet" href="/css/bootstrap/all.css">
     <script src="/js/bootstrap/jquery.min.js"></script>
     <script src="/js/bootstrap/popper.min.js"></script>
@@ -22,19 +22,21 @@
 <body>
     <div class="wrapper">
         <%- include('./../includes/header'); %>
-        <main class="main">
-            <%- body %>
-        </main>
-        <%- include('./../includes/footer'); %>
+            <main class="main">
+                <%- body %>
+            </main>
+            <%- include('./../includes/footer'); %>
     </div>
     <script>
         $(document).ready(() => {
             if (localStorage.getItem("token")) {
-                // $(".addToCart")
-                // $(".loginToContinue")
+                $(".addToCardBtn").show()
+                $(".registerBtn").hide()
                 $(".logout").show()
                 $(".auth_btns").hide()
             } else {
+                $(".addToCardBtn").hide()
+                $(".registerBtn").show()
                 $(".logout").hide()
                 $(".auth_btns").show()
             }
@@ -45,6 +47,26 @@
                 $("#itemImage").attr('src', item.image)
                 $('.modal').modal('toggle')
             })
+
+            window.cart = [];
+            $(document).on('click', '.addToCardBtn', (event) => {
+                let item = JSON.parse($(event.target).attr('item'));
+                let order = {
+                    item,
+                    quantity: 0
+                }
+                let exist = false;
+                window.cart.forEach(_item => {
+                    if (_item._id === item.id) {
+                        order.quantity = 1;
+                        exist = true
+                    }
+                });
+                if (!exist) {
+                    window.cart.push(order)
+                }
+            })
+
 
             $(document).on('click', '.logout_btn', () => {
                 localStorage.clear();
