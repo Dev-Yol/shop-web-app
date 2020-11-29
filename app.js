@@ -3,9 +3,9 @@ const express = require("express"),
     path = require('path'),
     expressLayout = require('express-ejs-layouts'),
     app = express(),
-    port = 3000,
+    port = 3001,
     db = require("./services/dbConnection")
-const { Product } = require("./models")
+const { Product, Account } = require("./models")
 
 
 // Static Files
@@ -35,26 +35,29 @@ app.get("/auth/registration", function (req, res) {
     })
 })
 
-app.get("/user/order/:id", function (req, res) {
-    res.render('user/order', {
-        title: "Add to Cart"
-    })
+app.get("/user/order/:id", async function (req, res) {
+    app.set('layout', 'layouts/app')
+    let id = req.params.id
+    if (!id) {
+        res.redirect("/")
+    }
+    try {
+        Product.findById(id, (err, product) => {
+            if (err) {
+                return res.redirect("/")
+            }
+            res.render('pages/order', {
+                title: "Add to Cart",
+                product,
+                image: JSON.parse(JSON.stringify(product)).image
+            })
+        })
+    } catch (error) {
+        return res.redirect("/")
+    }
 })
 
-
-// app.get("/user/cart", isLoggedIn, function(req, res, next) {
-//     Order.find({ user: req.user }, function(err, orders) {
-//         if (err) return err;
-//         var cart;
-//         orders.forEach(function(order) {
-//             cart = new Cart(order.cart);
-//             order.items = cart.generateArray();
-//         });
-//         res.render('user/cart', { orders: orders });
-//     });
-// });
-
-app.get("/user/homepageUser", function (req, res) {
+app.get("/user/homepageUser", function (req, sres) {
     res.render('user/homepageUser', {
         title: "User",
         data: [{
@@ -108,17 +111,27 @@ app.get("/user/homepageUser", function (req, res) {
         layout: 'layouts/app'
     })
 })
-
-app.get('/', async (req, res) => {
+app.get("/", (req, res) => {
+    res.redirect("/products")
+})
+app.get('/products/:page?', async (req, res) => {
     app.set('layout', 'layouts/app')
     let data = [];
+    let perPage = 8;
+    var page = req.params.page || 1
+    let count = 0;
     try {
-        data = await Product.find({}).limit(8)
+        data = await Product.find({})
+            .find({})
+            .skip((perPage * page) - perPage)
+            .limit(perPage)
     } catch (error) {
         data = []
     }
     return res.render('pages/homepage', {
         title: "Shoe Shop",
+        current: page,
+        pages: Math.ceil(count / perPage),
         data: JSON.stringify(data),
         layout: 'layouts/app'
     })
@@ -167,7 +180,7 @@ app.get('/admin/product/updating-product-details', (req, res) => {
 });
 
 app.get("/seed", (req, res) => {
-    Product.find({}, (err, data) => {
+    Account.find({}, (err, data) => {
         res.send({ err, data })
     })
 })
@@ -180,11 +193,28 @@ app.get('*', (req, res) => {
     });
 })
 
+// app.get('/products/:page', function (req, res, next) {
+//     var perPage = 8
+//     var page = req.params.page || 1
+//     Product
+//         .find({})
+//         .skip((perPage * page) - perPage)
+//         .limit(perPage)
+//         .exec(function (err, products) {
+//             Product.count().exec(function (err, count) {
+//                 if (err) return next(err)
+//                 res.render('main/products', {
+//                     products: products,
+//                     current: page,
+//                     pages: Math.ceil(count / perPage)
+//                 })
+//             })
+//         })
+// })
 
 
 app.use("/api/products", require("./router/product"))
 app.use("/api/auth", require("./router/auth"))
-app.use('/images', express.static(path.join(__dirname, 'public/uploads')))
 
 db.connect();
 app.listen(port, console.log(`Listening to port ${port}!`))

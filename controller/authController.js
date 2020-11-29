@@ -70,7 +70,7 @@ const register = (req, res) => {
                 profilePicture: imageName,
             }, (acct) => {
                 let response = {
-                        access_token: '',
+                        access_token: '',   
                         data: {}
                     }
                     // if create user is successful

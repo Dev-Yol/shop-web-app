@@ -11,9 +11,11 @@
     <link rel="stylesheet" href="/css/index.css">
     <!--Bootsrap 4 CDN-->
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="/css/bootstrap/font-awesome.min.css"> -->
+
     <!--Fontawesome CDN-->
 
-    <link rel="stylesheet" href="/css/bootstrap/all.css">
+    <link rel="stylesheet" href="/css/bootstrap/icons/css/font-awesome.min.css">
     <script src="/js/bootstrap/jquery.min.js"></script>
     <script src="/js/bootstrap/popper.min.js"></script>
     <script src="/js/bootstrap/bootstrap.min.js"></script>
@@ -22,10 +24,10 @@
 <body>
     <div class="wrapper">
         <%- include('./../includes/header'); %>
-            <main class="main">
-                <%- body %>
-            </main>
-            <%- include('./../includes/footer'); %>
+        <main class="main">
+            <%- body %>
+        </main>
+        <%- include('./../includes/footer'); %>
     </div>
     <script>
         $(document).ready(() => {
@@ -67,6 +69,16 @@
                 }
             })
 
+            $(document).on('change', '#quantity', (e) => {
+
+                let quantity = $('#quantity').val();
+                if (quantity < 0) {
+                    $('#quantity').val(0);
+                }
+                let price = $('#item-price').text();
+                $('#item-total').text(quantity * price);
+
+            })
 
             $(document).on('click', '.logout_btn', () => {
                 localStorage.clear();
